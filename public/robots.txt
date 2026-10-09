@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://suministrossanz.com/sitemap-index.xml
+Sitemap: https://suministrosanz.com/sitemap-index.xml

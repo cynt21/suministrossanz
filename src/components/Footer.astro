@@ -1,0 +1,13 @@
+---
+import { site, nav, categories, extintores } from '../data/site';
+---
+<footer><div class="wrap"><div class="cols">
+  <div><img class="fl" src="/logo.png" alt="" width="63" height="48" /><h3>{site.name}</h3>
+    <p>Empresa familiar de Burriana con más de 45 años de experiencia. Tienda y reparto para toda la provincia de Castellón.</p>
+    <p>{site.address}<br />{site.city}</p>
+    <p>{site.phones.map(p => <><a href={`tel:${p.tel}`}>{p.display}</a><br /></>)}<a href={`mailto:${site.email}`}>{site.email}</a></p>
+    <p>{site.hours.map(h => <>{h}<br /></>)}</p></div>
+  <div><h3>Web</h3><ul>{nav.map(([n, h]) => <li><a href={h}>{n}</a></li>)}</ul></div>
+  <div><h3>Productos</h3><ul>{categories.map(c => <li><a href={`/productos/${c.slug}`}>{c.name}</a></li>)}<li><a href={extintores.href}>Extintores</a></li></ul></div>
+  <div><h3>Legal</h3><ul><li><a href="/aviso-legal">Aviso legal</a></li><li><a href="/privacidad">Privacidad</a></li><li><a href="/cookies">Cookies</a></li></ul></div>
+</div><p style="margin:2.2rem 0 0;color:#9c9a95">© {new Date().getFullYear()} {site.legalName}</p></div></footer>

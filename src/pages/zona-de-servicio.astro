@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import Mapa from '../components/MapaCastellon.astro';
+---
+<Base title="Suministros de hostelería en la provincia de Castellón" description="Base en Burriana y reparto de suministros, además de venta, revisión y mantenimiento de extintores, en toda la provincia de Castellón." crumbs={[['Inicio','/'],['Zona de servicio','/zona-de-servicio']]}>
+<section><div class="wrap split even"><div><h1>Desde Burriana, a toda la provincia de Castellón</h1>
+<p>Con base en Burriana, realizamos repartos en toda la provincia de Castellón y ofrecemos también nuestros servicios de venta, revisión y mantenimiento de extintores.</p>
+<p>¿Quieres confirmar si llegamos hasta tu zona? Contacta con nosotros.</p>
+<div class="btns"><a class="btn" href="/contacto">Contactar</a></div></div>
+<div class="k"><Mapa /></div></div></section>
+</Base>

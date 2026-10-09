@@ -1,0 +1,40 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/dm-sans';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, wa } from '../data/site';
+const { title, description, waMsg = 'Hola, quería consultar un producto.', crumbs = [] } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const og = new URL('/og.png', Astro.site).href;
+const ld = { '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, legalName: site.legalName, url: Astro.site?.href, image: og,
+  telephone: site.phones[2].tel, email: site.email,
+  address: { '@type': 'PostalAddress', streetAddress: site.address, postalCode: '12530', addressLocality: 'Burriana', addressRegion: 'Castellón', addressCountry: 'ES' },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '08:00', closes: '13:30' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '15:30', closes: '18:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '08:00', closes: '14:00' } ] };
+const crumbLd = crumbs.length > 0 ? { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c[0], item: new URL(c[1], Astro.site).href })) } : null;
+---
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="theme-color" content="#FAF8F5" />
+<title>{title}</title><meta name="description" content={description} /><link rel="canonical" href={url} />
+<link rel="icon" href="/logo.png" type="image/png" />
+<meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={url} /><meta property="og:type" content="website" /><meta property="og:locale" content="es_ES" /><meta property="og:image" content={og} />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={og} />
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+{crumbLd && <script type="application/ld+json" set:html={JSON.stringify(crumbLd)} />}
+</head><body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<Header /><main id="main"><slot /></main><Footer />
+<a class="wa" href={wa(waMsg)} aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9c.5 2.5 2.5 4.5 5 5l1.2-1.2-1.8-1-.8.8c-1-.4-1.8-1.2-2.2-2.2l.8-.8-1-1.8z" fill="currentColor" stroke="none"/></svg><span>WhatsApp</span></a>
+<script is:inline>
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (a) {
+      var m = a.getAttribute('href').match(/^https:\/\/wa\.me\/(\d+)\?text=(.*)$/);
+      if (m) a.setAttribute('href', 'whatsapp://send?phone=' + m[1] + '&text=' + m[2]);
+    });
+  }
+</script>
+</body></html>

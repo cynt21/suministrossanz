@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import CategoryCard from '../components/CategoryCard.astro';
+import { categories, extintores, wa } from '../data/site';
+const first = categories.slice(0, 8);
+---
+<Base title="Suministros para hostelería en Burriana | Suministros Hosteleros Sanz" description="Suministros para hostelería, limpieza, desechables y extintores en Burriana. Tienda y reparto en toda la provincia de Castellón. Más de 45 años de experiencia.">
+<section><div class="wrap hero2">
+  <div class="rl fu"><h1>Más de 45 años surtiendo a los profesionales de Castellón.</h1>
+    <p>Suministros para negocios y particulares, con tienda y reparto.</p>
+    <h2 style="font-size:1.8rem;margin-top:2.2rem">Una empresa familiar de Burriana.</h2>
+    <p>Llevamos más de 45 años suministrando a bares, restaurantes, hoteles y comercios, y también a particulares. Trabajamos con cercanía, servimos rápido y cuidamos la calidad de lo que vendemos.</p>
+    <div class="btns"><a class="btn" href="/productos">Ver productos</a><a class="btn alt" href="/empresa">Conócenos</a></div></div>
+  <div class="mos fu" aria-hidden="true">
+    <img class="a" src="/img/textil-mesa.webp" alt="" width="539" height="900" fetchpriority="high" />
+    <img src="/img/cristaleria.webp" alt="" width="900" height="491" />
+    <img src="/img/vajilla.webp" alt="" width="900" height="491" />
+  </div></div></section>
+<section class="alt-bg"><div class="wrap"><h2>Todo para tu negocio.</h2>
+  <div class="grid">{first.map(c => <CategoryCard name={c.name} href={`/productos/${c.slug}`} img={c.img} />)}</div>
+  <p style="margin-top:1.3rem">¿No lo ves aquí? Pregúntanos, seguro que lo tenemos.</p>
+  <a class="btn alt" href="/productos">Ver todas las categorías</a></div></section>
+<section><div class="wrap"><p class="big">+45</p><p>años sirviendo a profesionales de la zona.</p>
+  <div class="cols3" style="margin-top:1.5rem">
+    <div class="k"><h3>Rapidez</h3><p>Servimos con agilidad, porque un negocio no puede esperar.</p></div>
+    <div class="k"><h3>Buena calidad</h3><p>Seleccionamos lo que vendemos como si fuera para nuestro propio negocio.</p></div>
+    <div class="k"><h3>Trato familiar</h3><p>Te atiende gente que conoce el oficio y te trata de tú a tú.</p></div></div></div></section>
+<section class="alt-bg"><div class="wrap split"><h2>Atendemos a todo tipo de clientes.</h2>
+  <div><p>Empezamos con bares y restaurantes, y hoy servimos a todo el que necesite suministros: hoteles, cafeterías, panaderías y pastelerías, catering, colegios, residencias, gimnasios, gasolineras, comercios, oficinas, comunidades, empresas y particulares.</p><p>Y mucho más. Si tu negocio necesita suministros, cuenta con nosotros.</p></div></div></section>
+<section class="sand"><div class="wrap split even"><div class="rl"><h2>Protección y mantenimiento.</h2>
+  <p>Vendemos extintores y nos encargamos de su revisión, mantenimiento y recarga.</p>
+  <div class="btns"><a class="btn" href="/extintores">Ver extintores</a><a class="btn alt" href={wa('Hola, quería solicitar una revisión de extintores.')}>Solicitar revisión</a></div></div>
+  <img class="photo" style="aspect-ratio:16/9" src="/img/extintores.webp" alt="Extintores de distintos tamaños" width="1100" height="619" loading="lazy" /></div></section>
+<section class="alt-bg"><div class="wrap"><h2>¿Necesitas un proveedor para tu negocio?</h2><div class="btns"><a class="btn" href="/contacto">Hablar con nosotros</a></div></div></section>
+</Base>

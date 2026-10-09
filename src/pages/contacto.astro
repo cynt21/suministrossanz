@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, wa } from '../data/site';
+const maps = 'https://www.google.com/maps/search/?api=1&query=Suministros+Sanz+E.E.+Burriana';
+---
+<Base title="Contacto | Suministros Hosteleros Sanz, Burriana" description="Contacta con Suministros Hosteleros Sanz en Burriana por WhatsApp, teléfono, email o visita nuestra tienda." crumbs={[['Inicio','/'],['Contacto','/contacto']]}>
+<section><div class="wrap"><h1>Contacta con nosotros</h1>
+<p>¿Necesitas información, hacer un pedido o consultar alguno de nuestros productos o servicios? Estamos a tu disposición.</p>
+<div class="grid" style="margin-top:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+  <a class="k" href={wa('Hola, quería consultar un producto.')}><h3>WhatsApp</h3><p>Escríbenos directamente y te responderemos lo antes posible.</p></a>
+  <div class="k"><h3>Teléfonos</h3><p>{site.phones.map(p => <><a href={`tel:${p.tel}`}>{p.display}</a><br /></>)}</p></div>
+  <div class="k"><h3>Email</h3><p><a href={`mailto:${site.email}`}>{site.email}</a></p></div>
+  <div class="k"><h3>Dirección</h3><p>{site.address}<br />{site.city}</p><div class="btns"><a class="btn alt" href={maps} target="_blank" rel="noopener">Cómo llegar</a></div></div>
+  <div class="k"><h3>Horario</h3><p>{site.hours.map(h => <>{h}<br /></>)}</p></div>
+</div></div></section>
+</Base>

@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import { categories, site } from '../../data/site';
+export function getStaticPaths() { return categories.map(c => ({ params: { slug: c.slug }, props: { c } })); }
+const { c } = Astro.props;
+const others = categories.filter(x => x.slug !== c.slug);
+---
+<Base title={`${c.name} en Burriana | Suministros Hosteleros Sanz`} description={`${c.name} para negocios y particulares en Burriana y toda la provincia de Castellón. ${c.text}`} waMsg={`Hola, quería consultar ${c.name.toLowerCase()}.`} crumbs={[['Inicio','/'],['Productos','/productos'],[c.name,`/productos/${c.slug}`]]}>
+<div class="wrap crumb"><a href="/">Inicio</a> › <a href="/productos">Productos</a> › {c.name}</div>
+<section><div class="wrap split even"><div><h1>{c.name}</h1><p>{c.text}</p>
+<h2 style="font-size:1.5rem;margin-top:1.8rem">¿Buscas algo concreto?</h2>
+<div class="btns"><a class="btn" href="/contacto">Consúltanos</a><a class="btn alt" href={`tel:${site.phones[2].tel}`}>Llamar</a></div></div>
+<img class="photo" src={c.img} alt={c.name} width="900" height="600" fetchpriority="high" /></div></section>
+<section class="alt-bg"><div class="wrap"><h3>Otras secciones</h3><ul class="chips">{others.map(o => <li><a href={`/productos/${o.slug}`}>{o.name}</a></li>)}<li><a href="/extintores">Extintores</a></li></ul></div></section>
+</Base>

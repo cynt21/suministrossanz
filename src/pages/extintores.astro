@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { wa, site } from '../data/site';
+const faq = [["¿Cada cuánto hay que revisar los extintores?", "Recomendamos hacer una revisión una vez al año. Si no recuerdas cuándo revisaste los tuyos por última vez, escríbenos o llámanos y lo vemos juntos."], ["¿Qué hago si un extintor está viejo o ya no funciona bien?", "Depende del estado en que se encuentre: puede recargarse, retimbrarse o, si hace falta, sustituirse por uno nuevo. Cuéntanos qué extintor tienes y te orientamos."], ["¿En qué zona trabajáis?", "Desde Burriana atendemos toda la provincia de Castellón, igual que el reparto de suministros. Si tienes dudas sobre tu localidad, contacta con nosotros."], ["¿Cómo puedo pedir una revisión o un presupuesto?", "Escríbenos por WhatsApp, llámanos o pásate por la tienda en Burriana. Dinos cuántos extintores tienes y de qué tipo, y te responderemos lo antes posible."]];
+---
+<Base title="Extintores en Burriana: venta, revisión y mantenimiento" description="Venta de extintores, revisión anual, mantenimiento, recarga, sustitución y retimbrado en Burriana y toda la provincia de Castellón." waMsg="Hola, quería información sobre extintores." crumbs={[['Inicio','/'],['Extintores','/extintores']]}>
+<section class="dark"><div class="wrap split"><div><h1>Extintores: venta, revisión y mantenimiento.</h1><p class="mute">Vendemos extintores y nos ocupamos de que estén siempre en regla.</p>
+<div class="btns"><a class="btn" href={wa('Hola, quería solicitar una revisión de extintores.')}>Solicitar revisión</a><a class="btn alt" href={`tel:${site.phones[0].tel}`}>Llamar</a></div></div><img class="photo" style="aspect-ratio:16/9" src="/img/extintores.webp" alt="Extintores de distintos tamaños" width="1100" height="619" loading="lazy" /></div></section>
+<section><div class="wrap cols3">
+<div><h3>Venta</h3><p>Extintores de distintos tipos y placas informativas.</p></div>
+<div><h3>Revisión anual</h3><p>Revisamos tus extintores cada año.</p></div>
+<div><h3>Mantenimiento y recarga</h3><p>Los mantenemos a punto y los recargamos.</p></div>
+<div><h3>Sustitución y retimbrado</h3><p>Si un extintor ha cumplido su vida útil, lo sustituimos o lo retimbramos.</p></div>
+<div><h3>Quién lo realiza</h3><p>El servicio técnico lo realiza una empresa colaboradora autorizada.</p></div>
+<div><h3>A quién atendemos y dónde</h3><p>A todo el mundo: negocios, empresas, comunidades y particulares, en toda la provincia de Castellón.</p></div></div></section>
+<section class="alt-bg"><div class="wrap"><h2>Preguntas frecuentes</h2>{faq.map(([q, a]) => <details style="margin:.8rem 0"><summary><strong>{q}</strong></summary><p>{a}</p></details>)}</div></section>
+<section id="solicitar"><div class="wrap"><h2>Solicitar revisión</h2><p>Escríbenos por WhatsApp o llámanos y te atendemos.</p><div class="btns"><a class="btn" href={wa('Hola, quería solicitar una revisión de extintores.')}>Escribir por WhatsApp</a><a class="btn alt" href={`tel:${site.phones[0].tel}`}>Llamar</a></div></div></section>
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) })} />
+</Base>

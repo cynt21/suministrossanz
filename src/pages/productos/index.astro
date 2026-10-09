@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import CategoryCard from '../../components/CategoryCard.astro';
+import { categories, extintores } from '../../data/site';
+---
+<Base title="Productos para hostelería y negocios | Suministros Hosteleros Sanz" description="Menaje, vajilla, cristalería, desechables, limpieza, envases y extintores en Burriana. Pregúntanos por lo que necesites." crumbs={[['Inicio','/'],['Productos','/productos']]}>
+<section><div class="wrap"><h1>Productos</h1>
+<p>Estas son nuestras secciones de productos. Si no encuentras lo que buscas, pregúntanos.</p>
+<div class="grid">{categories.map(c => <CategoryCard name={c.name} href={`/productos/${c.slug}`} img={c.img} />)}<CategoryCard name={extintores.name} href={extintores.href} img={extintores.img} /></div>
+<div class="btns"><a class="btn" href="/contacto">¿No lo ves? Consúltanos</a></div></div></section>
+</Base>

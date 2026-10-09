@@ -1,0 +1,17 @@
+---
+---
+<div id="mapbox" style="background:var(--sand);border-radius:3px;min-height:380px;display:grid;place-items:center;text-align:center;padding:1.5rem">
+  <div>
+    <h3>Mapa de la zona</h3>
+    <p style="margin:0 auto 1rem">Burriana y toda la provincia de Castellón, con Suministros Sanz marcado.</p>
+    <button class="btn" id="mapbtn" type="button">Mostrar mapa</button>
+    <p style="margin:1rem auto 0;font-size:.85rem;color:var(--mute)">El mapa se carga desde Google Maps solo si pulsas el botón. Google puede usar cookies al hacerlo.</p>
+  </div>
+</div>
+<script is:inline>
+  document.getElementById('mapbtn').addEventListener('click', function () {
+    var b = document.getElementById('mapbox');
+    b.innerHTML = '<iframe title="Mapa con la ubicación de Suministros Sanz en Burriana" style="width:100%;height:420px;border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Suministros+Sanz+E.E.+Burriana&z=9&output=embed"></iframe>';
+    b.style.padding = '0'; b.style.display = 'block';
+  });
+</script>

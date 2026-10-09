@@ -1,0 +1,5 @@
+---
+import Illus from './Illus.astro';
+const { name, href, img = '' } = Astro.props;
+---
+<a class="card" href={href}><div class="clip">{img ? <img src={img} alt={name} width="900" height="500" loading="lazy" decoding="async" /> : <Illus />}</div><div class="in"><h3>{name}</h3></div></a>
